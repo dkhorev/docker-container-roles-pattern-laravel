@@ -1,0 +1,16 @@
+includes:
+  - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+  paths:
+    - app
+
+  # The level 9 is the highest level
+  level: 9
+
+  excludePaths:
+    - "**/Nova/*.php"
+    - "**/vendor/*"
+
+  checkMissingIterableValueType: false
+  checkGenericClassInNonGenericObjectType: false
