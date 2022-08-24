@@ -12,7 +12,7 @@ fi
 
 if [ "$role" = "app" ]; then
     exec php-fpm
-elif [ "$role" = "migrations" ]; then
+elif [ "$role" = "migrator" ]; then
   (cd /var/www/html && php artisan migrate --force)
 elif [ "$role" = "scheduler" ]; then
     while [ true ]
