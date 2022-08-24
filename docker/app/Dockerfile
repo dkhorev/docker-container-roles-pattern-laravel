@@ -20,10 +20,7 @@ COPY bootstrap /var/www/html/bootstrap
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 # composer install for app
 RUN cd /var/www/html \
-    && composer install --prefer-dist --no-scripts --no-dev --no-autoloader --ignore-platform-reqs \
-    && rm -rf /root/.composer \
-    && cd /var/www/html && composer dump-autoload --no-scripts --no-dev --optimize
-
+    && composer install --no-interaction --prefer-dist --ignore-platform-reqs --no-scripts
 
 # Stage 2
 FROM php:8.1-fpm-alpine as final

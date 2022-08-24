@@ -17,68 +17,68 @@ services:
         max-size: "1000k"
         max-file: "2"
 
-  #  web:
-  #    image: role-app-nginx:latest
-  #    depends_on:
-  #      - app
-  #    ports:
-  #      - mode: host
-  #        published: 8181
-  #        target: 8181
-  #    deploy:
-  #      mode: global
-  #      restart_policy:
-  #        condition: on-failure
-  #    logging:
-  #      driver: json-file
-  #      options:
-  #        max-size: "1000k"
-  #        max-file: "2"
+  web:
+    image: role-app-nginx:latest
+    depends_on:
+      - app
+    ports:
+      - mode: host
+        published: 8181
+        target: 8181
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+    logging:
+      driver: json-file
+      options:
+        max-size: "1000k"
+        max-file: "2"
 
-  #  app:
-  #    image: role-app:latest
-  #    deploy:
-  #      mode: replicated
-  #      replicas: 3
-  #      restart_policy:
-  #        condition: on-failure
-  #    volumes:
-  #      - ./storage/logs:/var/www/html/storage/logs
-  #    environment:
-  #      - CONTAINER_ROLE=app
-  #      # App specific env vars
-  #      - APP_KEY=${APP_KEY}
-  #      - QUEUE_CONNECTION=redis
-  #      - REDIS_HOST=redis
-  #      - REDIS_PASSWORD=
-  #      - REDIS_PORT=6379
-  #    logging:
-  #      driver: json-file
-  #      options:
-  #        max-size: "1000k"
-  #        max-file: "2"
+  app:
+    image: role-app:latest
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - ./storage/logs:/var/www/html/storage/logs
+    environment:
+      - CONTAINER_ROLE=app
+      # App specific env vars
+      - APP_KEY=${APP_KEY}
+      - QUEUE_CONNECTION=redis
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=
+      - REDIS_PORT=6379
+    logging:
+      driver: json-file
+      options:
+        max-size: "1000k"
+        max-file: "2"
 
-  #  scheduler:
-  #    image: role-app:latest
-  #    deploy:
-  #      mode: global
-  #      restart_policy:
-  #        condition: on-failure
-  #    volumes:
-  #      - ./storage/logs:/var/www/html/storage/logs
-  #    environment:
-  #      - CONTAINER_ROLE=scheduler
-  #      # App specific env vars
-  #      - APP_KEY=${APP_KEY}
-  #      - QUEUE_CONNECTION=redis
-  #      - REDIS_HOST=redis
-  #      - REDIS_PASSWORD=
-  #      - REDIS_PORT=6379
-  #    logging:
-  #      driver: json-file
-  #      options:
-  #        max-size: "1000k"
-  #        max-file: "2"
+  scheduler:
+    image: role-app:latest
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - ./storage/logs:/var/www/html/storage/logs
+    environment:
+      - CONTAINER_ROLE=scheduler
+      # App specific env vars
+      - APP_KEY=${APP_KEY}
+      - QUEUE_CONNECTION=redis
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=
+      - REDIS_PORT=6379
+    logging:
+      driver: json-file
+      options:
+        max-size: "1000k"
+        max-file: "2"
 
   horizon:
     image: role-app:latest
@@ -92,10 +92,7 @@ services:
     environment:
       - CONTAINER_ROLE=horizon
       # App specific env vars
-      #      - APP_KEY=${APP_KEY}
-      - APP_KEY="base64:bqd7EYE8/aL3k7rRN22WbwRCxCbOEJbAnx+NgRxMLCg="
-      - APP_ENV=production
-      - APP_DEBUG=false
+      - APP_KEY=${APP_KEY}
       - QUEUE_CONNECTION=redis
       - REDIS_HOST=redis
       - REDIS_PASSWORD=
@@ -106,24 +103,25 @@ services:
         max-size: "1000k"
         max-file: "2"
 
-#  migrator:
-#    image: role-app:latest
-#    deploy:
-#      mode: global
-#      restart_policy:
-#        condition: on-failure
-#    volumes:
-#      - ./storage/logs:/var/www/html/storage/logs
-#    environment:
-#      - CONTAINER_ROLE=migrator
-#      # App specific env vars
-#      - APP_KEY=${APP_KEY}
-#      - QUEUE_CONNECTION=redis
-#      - REDIS_HOST=redis
-#      - REDIS_PASSWORD=
-#      - REDIS_PORT=6379
-#    logging:
-#      driver: json-file
-#      options:
-#        max-size: "1000k"
-#        max-file: "2"
+  migrator:
+    image: role-app:latest
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - ./storage/logs:/var/www/html/storage/logs
+    environment:
+      - CONTAINER_ROLE=migrator
+      # App specific env vars
+      - APP_KEY=${APP_KEY}
+      - LOG_CHANNEL=syslog
+      - QUEUE_CONNECTION=redis
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=
+      - REDIS_PORT=6379
+    logging:
+      driver: json-file
+      options:
+        max-size: "1000k"
+        max-file: "2"
