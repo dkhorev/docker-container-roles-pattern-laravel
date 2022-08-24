@@ -8,8 +8,10 @@ use App\Events\MathAddEvent;
 
 class MathController extends Controller
 {
-    protected function add(string $a, string $b): void
+    protected function add(string $a, string $b): string
     {
         event(new MathAddEvent((int)$a, (int)$b));
+
+        return 'OK';
     }
 }
