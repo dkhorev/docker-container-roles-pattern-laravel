@@ -1,4 +1,4 @@
-# Demo: Docker container roles pattern for monolith Laravel apps
+# Demo: Docker container roles pattern for Laravel apps
 
 This sample project demonstrates the usage of container role pattern when deploying Laravel apps.
 
