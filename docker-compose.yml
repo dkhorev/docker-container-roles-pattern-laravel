@@ -108,7 +108,7 @@ services:
     deploy:
       mode: global
       restart_policy:
-        condition: on-failure
+        condition: none
     volumes:
       - ./storage/logs:/var/www/html/storage/logs
     environment:
