@@ -1,11 +1,16 @@
 {
-  "name": "laravel/laravel",
+  "name": "dkhorev/docker-container-roles-pattern-laravel",
   "type": "project",
-  "description": "The Laravel Framework.",
+  "description": "This sample project demonstrates the usage of container role pattern when deploying Laravel apps.",
   "keywords": [
     "php",
     "php patterns",
-    "laravel patterns"
+    "laravel patterns",
+    "laravel",
+    "docker",
+    "backend",
+    "backend development",
+    "devops for backend devs"
   ],
   "license": "MIT",
   "require": {
