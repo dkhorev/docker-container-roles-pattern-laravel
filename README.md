@@ -1,15 +1,26 @@
 # Demo: Docker container roles pattern for monolith Laravel apps
 
+This sample project demonstrates the usage of container role pattern when deploying monolith Laravel apps.
+
+See the full article
+here: [https://medium.com/@dkhorev/docker-container-roles-pattern-for-laravel-apps-d445a62d230f](https://medium.com/@dkhorev/docker-container-roles-pattern-for-laravel-apps-d445a62d230f)
+
 ### Starting the app
 
-Build the application main container:
-`DOCKER_BUILDKIT=1 docker build --pull -t role-app -f docker/app/Dockerfile .`
+Install composer dependencies: \
+`composer i`
 
-Build nginx proxy container:
-`DOCKER_BUILDKIT=1 docker build --pull -t role-app-nginx -f docker/nginx/Dockerfile .`
-
-Pull Redis container:
+Pull Redis container: \
 `docker pull redis:7-alpine`
 
-Start the stack:
+Build the application main container: \
+`DOCKER_BUILDKIT=1 docker build --pull -t role-app -f docker/app/Dockerfile .`
+
+Build nginx proxy container: \
+`DOCKER_BUILDKIT=1 docker build --pull -t role-app-nginx -f docker/nginx/Dockerfile .`
+
+Start the stack: \
 `env $(cat .env | grep ^[A-Z] | xargs) docker-compose up -d`
+
+Stop the stack: \
+`docker-compose down`
