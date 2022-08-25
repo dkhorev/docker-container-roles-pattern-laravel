@@ -18,7 +18,7 @@ class AsyncJobDemo implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    public function handle()
+    public function handle(): void
     {
         $now = now()->toJSON();
         Log::info("Async job demo run: $now");
